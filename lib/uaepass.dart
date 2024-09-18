@@ -73,13 +73,20 @@ class Uaepass {
 
   /// Initiate UAEPass login
   Future<void> login(BuildContext context) async {
-    final code = await Navigator.push(
-      context,
+    final code = await Navigator.of(context, rootNavigator: true).push(
       MaterialPageRoute(
         builder: (context) => const UaepassLoginView(),
         fullscreenDialog: fullscreen,
       ),
     );
+    //Navigator.push(context, route)
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => const UaepassLoginView(),
+    //     fullscreenDialog: fullscreen,
+    //   ),
+    // );
 
     if (code == null) return;
     _code = code;
